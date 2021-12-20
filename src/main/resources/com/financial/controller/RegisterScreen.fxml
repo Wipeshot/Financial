@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.financial.controller.gui.RegisterScreenControl">
+   <children>
+      <AnchorPane prefHeight="404.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="229.0" layoutY="60.0" text="Registrieren">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <GridPane fx:id="registerPane" layoutX="161.0" layoutY="99.0" prefHeight="238.0" prefWidth="279.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="58.0" prefWidth="144.0" text="Vorname">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="163.0" text="Name" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="49.0" prefWidth="154.0" text="Benutzername" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="44.0" prefWidth="149.0" text="Passwort" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="82.0" prefWidth="160.0" text="Passwort wiederholen" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="firstnameField" prefHeight="198.0" prefWidth="278.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameField" prefHeight="52.0" prefWidth="147.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="usernameField" prefHeight="52.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="passwordField" prefHeight="46.0" prefWidth="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <PasswordField fx:id="passwordFieldRepeat" prefHeight="45.0" prefWidth="141.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label prefHeight="47.0" prefWidth="153.0" text="E-Mail Adresse" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="mailField" prefHeight="50.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#goBackToLogin" prefHeight="47.0" prefWidth="165.0" text="Zurück" GridPane.rowIndex="6" />
+                  <Button mnemonicParsing="false" onAction="#tryToRegister" prefHeight="42.0" prefWidth="139.0" text="Registieren" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
