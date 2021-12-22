@@ -1,5 +1,6 @@
 package com.financial.controller;
 
+import com.financial.controller.login.Encrypt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

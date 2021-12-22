@@ -13,22 +13,22 @@
 
 <AnchorPane prefHeight="551.0" prefWidth="897.0" stylesheets="@gui/Styles/MainPageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.financial.controller.gui.MainPageControl">
    <children>
-      <AnchorPane layoutY="468.0" prefHeight="83.0" prefWidth="897.0">
+      <AnchorPane layoutY="499.0" prefHeight="52.0" prefWidth="900.0">
          <children>
-            <HBox alignment="CENTER" layoutY="51.0" prefHeight="31.0" prefWidth="897.0">
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="900.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Benutzerinformationen" />
+                  <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#reopenDashboard" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
+                  <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#openIncome" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
+                  <Button fx:id="expenseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
+                  <Button fx:id="accountsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
+                  <Button fx:id="optionButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einstellungen" />
                </children>
             </HBox>
          </children></AnchorPane>
-      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="150.0" prefWidth="257.0">
+      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="218.0" prefWidth="362.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="134.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="132.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="134.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="132.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -38,28 +38,58 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Name:" />
-            <Label text="Einnahmen:" GridPane.rowIndex="1" />
-            <Label text="Ausgaben:" GridPane.rowIndex="3" />
-            <Label text="Höchste Einnahmen: " GridPane.rowIndex="2" />
-            <Label text="Höchste Ausgaben:" GridPane.rowIndex="4" />
-            <Label fx:id="firstandlastnameLabel" prefHeight="57.0" prefWidth="131.0" text="Platzhalter" GridPane.columnIndex="1" />
-            <Label fx:id="incomeLabel" prefHeight="159.0" prefWidth="242.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="biggestIncomeLabel" prefHeight="74.0" prefWidth="132.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="expenseLabel" prefHeight="104.0" prefWidth="198.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="biggestExpenseLabel" prefHeight="139.0" prefWidth="206.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label prefHeight="71.0" prefWidth="229.0" text="Name:">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label prefHeight="71.0" prefWidth="242.0" text="Einnahmen:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label prefHeight="104.0" prefWidth="245.0" text="Ausgaben:" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label prefHeight="56.0" prefWidth="210.0" text="Höchste Einnahmen: " GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label prefHeight="98.0" prefWidth="278.0" text="Höchste Ausgaben:" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="firstandlastnameLabel" prefHeight="44.0" prefWidth="215.0" text="Platzhalter" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="incomeLabel" prefHeight="159.0" prefWidth="242.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="biggestIncomeLabel" prefHeight="44.0" prefWidth="246.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="expenseLabel" prefHeight="104.0" prefWidth="198.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="biggestExpenseLabel" prefHeight="139.0" prefWidth="206.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
          </children>
       </GridPane>
       <AnchorPane prefHeight="64.0" prefWidth="897.0">
          <children>
-            <Label alignment="CENTER" prefHeight="64.0" prefWidth="897.0" text="FINANZ MANAGER" textAlignment="CENTER" textFill="#c99200">
+            <Label alignment="CENTER" prefHeight="64.0" prefWidth="900.0" text="DASHBOARD" textAlignment="CENTER" textFill="#c99200">
                <font>
                   <Font name="Arial Bold" size="46.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <VBox layoutX="540.0" layoutY="64.0" prefHeight="435.0" prefWidth="315.0">
+      <VBox layoutX="444.0" layoutY="64.0" prefHeight="435.0" prefWidth="411.0" >
          <children>
             <PieChart fx:id="incomeChart" />
             <PieChart fx:id="expenseChart" />

@@ -2,48 +2,48 @@ package com.financial.controller.gui;
 
 import com.financial.controller.ScreenController;
 import com.financial.controller.UserController;
-import com.financial.object.IncomeAndExpenseCategory;
+import com.financial.object.BankAccount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.Icon;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static com.financial.controller.UserController.*;
-
-public class MainPageControl implements Initializable {
+public class IncomeView implements Initializable {
 
     @FXML
-    private Label firstandlastnameLabel;
+    private TableView tableIncome;
     @FXML
-    private Label incomeLabel;
+    private TableColumn tableColmAccount;
     @FXML
-    private Label biggestIncomeLabel;
+    private TableColumn tableColmValue;
     @FXML
-    private Label expenseLabel;
+    private TableColumn tableColmCat;
     @FXML
-    private Label biggestExpenseLabel;
+    private TableColumn tableColmDate;
     @FXML
-    private PieChart expenseChart;
+    private TableColumn tableColmDesc;
     @FXML
-    private PieChart incomeChart;
+    private PieChart incomeToAccountChart;
+    @FXML
+    private Button addIncomeButton;
+    @FXML
+    private Button deleteIncomeButton;
     @FXML
     private Button dashboardButton;
     @FXML
@@ -55,26 +55,45 @@ public class MainPageControl implements Initializable {
     @FXML
     private Button optionButton;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        firstandlastnameLabel.setText(getUser().getFullName());
-        incomeLabel.setText(calculateOverallIncome() + "€");
-        biggestIncomeLabel.setText(getCategoryWithBiggestIncome().getCategoryName());
-        expenseLabel.setText(calculateOverallExpense() + "€");
-        biggestExpenseLabel.setText(getCategoryWithBiggestExpense().getCategoryName());
-        setupIncomeChart();
-        setupExpenseChart();
+        initTable();
+        initPieChart();
+    }
+
+    private void initTable() {
+
+    }
+
+    private void initPieChart() {
+        ArrayList<BankAccount> accounts = UserController.getBankAccounts();
+        ArrayList<PieChart.Data> chartBalance = new ArrayList<>();
+        for (BankAccount acc : accounts) {
+            chartBalance.add(new PieChart.Data(acc.getAccountName(), acc.getBalance()));
+        }
+        if (chartBalance.size() > 0) {
+            ObservableList<PieChart.Data> chart = FXCollections.observableList(chartBalance);
+            incomeToAccountChart.setData(chart);
+            incomeToAccountChart.setLegendSide(Side.RIGHT);
+            incomeToAccountChart.setTitle("Kontoguthaben pro Konto");
+        }
     }
 
     @FXML
-    private void reopenDashboard(ActionEvent event) throws IOException {
+    private void openAddIncome(ActionEvent event) throws IOException {
+        new AddIncomeWindowController();
+    }
+
+    @FXML
+    private void openDashboard(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }
     @FXML
-    private void openIncome(ActionEvent event) throws IOException {
+    private void reopenIncome(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("IncomeView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -102,29 +121,4 @@ public class MainPageControl implements Initializable {
         window.setScene(scene);
     }*/
 
-    private void setupIncomeChart() {
-        ArrayList<IncomeAndExpenseCategory> incomeCategory = getIncomeToCategory();
-        ArrayList<PieChart.Data> incomeCatList = new ArrayList<>();
-        for (IncomeAndExpenseCategory cat : incomeCategory) {
-            incomeCatList.add(new PieChart.Data(cat.getCategoryName(), cat.getAmount()));
-        }
-        ObservableList<PieChart.Data> incomeChartList = FXCollections.observableList(incomeCatList);
-        incomeChart.setData(incomeChartList);
-        incomeChart.setTitle("Einnahmen");
-        incomeChart.setLegendSide(Side.RIGHT);
-        incomeChart.setLabelsVisible(false);
-    }
-
-    private void setupExpenseChart() {
-        ArrayList<IncomeAndExpenseCategory> expenseCategory = getExpenseToCategory();
-        ArrayList<PieChart.Data> expenseCatList = new ArrayList<>();
-        for (IncomeAndExpenseCategory cat : expenseCategory) {
-            expenseCatList.add(new PieChart.Data(cat.getCategoryName(), cat.getAmount()));
-        }
-        ObservableList<PieChart.Data> expenseChartList = FXCollections.observableList(expenseCatList);
-        expenseChart.setData(expenseChartList);
-        expenseChart.setTitle("Ausgaben");
-        expenseChart.setLegendSide(Side.RIGHT);
-        expenseChart.setLabelsVisible(false);
-    }
 }

@@ -33,6 +33,7 @@ public class UserController {
                 }
                 setupIncomeToCategory();
                 setupExpenseToCategory();
+                setupBankAccount();
         }
 
         public static void setupIncomeToCategory() {
@@ -94,7 +95,7 @@ public class UserController {
         public static ArrayList<IncomeAndExpenseCategory> getIncomeToCategory() {
                 ArrayList<IncomeAndExpenseCategory> incomeCategory = new ArrayList<>();
                 for (IncomeAndExpenseCategory cat : category) {
-                        if (cat.isIncome()) incomeCategory.add(cat);
+                        if (cat.isIncome() && cat.isUsed()) incomeCategory.add(cat);
                 }
                 try {
                         incomeCategory.get(0);
@@ -108,7 +109,7 @@ public class UserController {
         public static ArrayList<IncomeAndExpenseCategory> getExpenseToCategory() {
                 ArrayList<IncomeAndExpenseCategory> expenseCategory = new ArrayList<>();
                 for (IncomeAndExpenseCategory cat : category) {
-                        if (!cat.isIncome()) expenseCategory.add(cat);
+                        if (!cat.isIncome() && cat.isUsed()) expenseCategory.add(cat);
                 }
                 try {
                         expenseCategory.get(0);
@@ -117,5 +118,32 @@ public class UserController {
                         expenseCategory.get(0).setAmount(100);
                 }
                 return expenseCategory;
+        }
+
+        public static void setupBankAccount() {
+                for (BankAccount account : bankAccounts) {
+                    for (Income in : income) {
+                            account.increaseBalance(in.getAmount());
+                    }
+                    for (Expense exp : expense) {
+                            account.decreaseBalance(exp.getAmount());
+                    }
+                }
+        }
+
+        public static ArrayList<IncomeAndExpenseCategory> getCategory() {
+                return category;
+        }
+
+        public static ArrayList<BankAccount> getBankAccounts() {
+                return bankAccounts;
+        }
+
+        public static ArrayList<Income> getIncome() {
+                return income;
+        }
+
+        public static ArrayList<Expense> getExpense() {
+                return expense;
         }
 }

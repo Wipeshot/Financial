@@ -5,6 +5,7 @@ public class IncomeAndExpenseCategory {
     private final String category;
     private final boolean income;
     private double amount;
+    private boolean isUsed = false;
 
     public IncomeAndExpenseCategory(String category, boolean income) {
         this.category = category;
@@ -25,10 +26,12 @@ public class IncomeAndExpenseCategory {
 
     public void increaseAmount(double amount) {
         this.amount += amount;
+        isUsed = true;
     }
 
     public void decreaseAmount(double amount) {
         this.amount -= amount;
+        isUsed = true;
     }
 
     public void setAmount(double amount) {
@@ -39,4 +42,7 @@ public class IncomeAndExpenseCategory {
         return this;
     }
 
+    public boolean isUsed() {
+        return isUsed;
+    }
 }

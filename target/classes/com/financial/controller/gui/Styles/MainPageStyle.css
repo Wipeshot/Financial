@@ -4,7 +4,7 @@
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 1em; /* 12 */
+    -fx-font-size: 15px;
     -fx-text-fill: #000000;
 }
 
@@ -17,6 +17,6 @@
 }
 
 .button:pressed {
-    -fx-background-color: black;
-    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: #ff00f8;
 }

@@ -67,7 +67,7 @@ public class MySQLConnection {
     }
 
     public static ArrayList<Income> getIncome(int kontoid) {
-        String sql = "SELECT k.bezeichnung, e.betrag, e.beschreibung " +
+        String sql = "SELECT k.bezeichnung, e.betrag, e.beschreibung, e.datum " +
                 "FROM einnahme e, kategorie k " +
                 "WHERE e.kategorieid = k.kategorieid" +
                 "AND kontoid = " + kontoid;
@@ -75,15 +75,17 @@ public class MySQLConnection {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            String category = null;
-            double amount = 0;
-            String description = null;
+            String category;
+            double amount;
+            String description;
+            Date date;
             ArrayList<Income> income = new ArrayList<>();
             while(rs.next()) {
                 category = rs.getString(1);
                 amount = rs.getDouble(2);
                 description = rs.getString(3);
-                income.add(new Income(category, amount, description, kontoid));
+                date = rs.getDate(4);
+                income.add(new Income(category, amount, description, kontoid, date));
             }
             return income;
         } catch (Exception e) {
@@ -94,7 +96,7 @@ public class MySQLConnection {
     }
 
     public static ArrayList<Expense> getExpense(int kontoid) {
-        String sql = "SELECT k.bezeichnung, a.betrag, a.beschreibung " +
+        String sql = "SELECT k.bezeichnung, a.betrag, a.beschreibung, a.datum " +
                 "FROM ausgabe a, kategorie k " +
                 "WHERE a.kategorieid = k.kategorieid" +
                 "AND kontoid = " + kontoid;
@@ -105,12 +107,14 @@ public class MySQLConnection {
             String category;
             double amount;
             String description;
+            Date date;
             ArrayList<Expense> expense = new ArrayList<>();
             while(rs.next()) {
                 category = rs.getString(1);
                 amount = rs.getDouble(2);
                 description = rs.getString(3);
-                expense.add(new Expense(category, amount, description, kontoid));
+                date = rs.getDate(4);
+                expense.add(new Expense(category, amount, description, kontoid, date));
             }
             return expense;
         } catch (Exception e) {
