@@ -31,6 +31,10 @@ public class IncomeAndExpenseCategory {
         this.amount -= amount;
     }
 
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     public IncomeAndExpenseCategory getCategory() {
         return this;
     }

@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.financial.controller.gui.MainPageControl">
+<AnchorPane prefHeight="551.0" prefWidth="897.0" stylesheets="@gui/Styles/MainPageStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.financial.controller.gui.MainPageControl">
    <children>
-      <AnchorPane prefHeight="64.0" prefWidth="600.0">
+      <AnchorPane layoutY="468.0" prefHeight="83.0" prefWidth="897.0">
          <children>
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="623.0" text="FINANZ MANAGER" textFill="#c99200">
-               <font>
-                  <Font name="Arial Bold" size="46.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="336.0" prefHeight="64.0" prefWidth="600.0">
-         <children>
-            <MenuButton layoutX="508.0" layoutY="38.0" mnemonicParsing="false" popupSide="TOP" text="Anzeige ändern">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Einnahmenübersicht" />
-                <MenuItem mnemonicParsing="false" text="Ausgabenübersicht" />
-                  <MenuItem mnemonicParsing="false" text="Kontoübersicht" />
-                  <MenuItem mnemonicParsing="false" text="Benutzerinformationen" />
-              </items>
-            </MenuButton>
+            <HBox alignment="CENTER" layoutY="51.0" prefHeight="31.0" prefWidth="897.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Benutzerinformationen" />
+               </children>
+            </HBox>
          </children></AnchorPane>
-      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="271.0" prefWidth="239.0">
+      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="150.0" prefWidth="257.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="134.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="132.0" />
@@ -57,7 +50,20 @@
             <Label fx:id="biggestExpenseLabel" prefHeight="139.0" prefWidth="206.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <PieChart fx:id="incomeChart" layoutX="409.0" layoutY="65.0" prefHeight="70.0" prefWidth="200.0" />
-      <PieChart fx:id="expenseChart" layoutX="409.0" layoutY="220.0" prefHeight="84.0" prefWidth="182.0" />
+      <AnchorPane prefHeight="64.0" prefWidth="897.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="64.0" prefWidth="897.0" text="FINANZ MANAGER" textAlignment="CENTER" textFill="#c99200">
+               <font>
+                  <Font name="Arial Bold" size="46.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="540.0" layoutY="64.0" prefHeight="435.0" prefWidth="315.0">
+         <children>
+            <PieChart fx:id="incomeChart" />
+            <PieChart fx:id="expenseChart" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
