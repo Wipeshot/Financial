@@ -2,11 +2,11 @@ package com.financial.object;
 
 public class User {
 
-    private int userid;
-    private String username;
-    private String name;
-    private String firstname;
-    private String email;
+    private final int userid;
+    private final String username;
+    private final String name;
+    private final String firstname;
+    private final String email;
 
     public User(int userid, String username, String name, String firstname, String email) {
 

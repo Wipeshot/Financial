@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -13,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0">
          <children>
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="600.0" text="FINANZ MANAGER" textFill="#c99200">
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="623.0" text="FINANZ MANAGER" textFill="#c99200">
                <font>
                   <Font name="Arial Bold" size="46.0" />
                </font>
@@ -24,15 +25,17 @@
          <children>
             <MenuButton layoutX="508.0" layoutY="38.0" mnemonicParsing="false" popupSide="TOP" text="Anzeige ändern">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Einnahmenübersicht" />
+                <MenuItem mnemonicParsing="false" text="Ausgabenübersicht" />
+                  <MenuItem mnemonicParsing="false" text="Kontoübersicht" />
+                  <MenuItem mnemonicParsing="false" text="Benutzerinformationen" />
               </items>
             </MenuButton>
          </children></AnchorPane>
-      <GridPane layoutY="65.0" prefHeight="271.0" prefWidth="266.0">
+      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="271.0" prefWidth="239.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="108.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="108.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="134.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="132.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -45,8 +48,8 @@
             <Label text="Name:" />
             <Label text="Einnahmen:" GridPane.rowIndex="1" />
             <Label text="Ausgaben:" GridPane.rowIndex="3" />
-            <Label text="Größter Einnahmenbereich:" GridPane.rowIndex="2" />
-            <Label text="Größter Ausgabenbereich:" GridPane.rowIndex="4" />
+            <Label text="Höchste Einnahmen: " GridPane.rowIndex="2" />
+            <Label text="Höchste Ausgaben:" GridPane.rowIndex="4" />
             <Label fx:id="firstandlastnameLabel" prefHeight="57.0" prefWidth="131.0" text="Platzhalter" GridPane.columnIndex="1" />
             <Label fx:id="incomeLabel" prefHeight="159.0" prefWidth="242.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="biggestIncomeLabel" prefHeight="74.0" prefWidth="132.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -54,5 +57,7 @@
             <Label fx:id="biggestExpenseLabel" prefHeight="139.0" prefWidth="206.0" text="Platzhalter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
+      <PieChart fx:id="incomeChart" layoutX="409.0" layoutY="65.0" prefHeight="70.0" prefWidth="200.0" />
+      <PieChart fx:id="expenseChart" layoutX="409.0" layoutY="220.0" prefHeight="84.0" prefWidth="182.0" />
    </children>
 </AnchorPane>

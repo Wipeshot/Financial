@@ -1,15 +1,12 @@
 package com.financial.controller.gui;
 
-import com.financial.connection.MySQLConnection;
 import com.financial.controller.ScreenController;
-import com.financial.controller.login.Encrypt;
 import com.financial.controller.login.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -18,8 +15,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static com.financial.controller.login.Encrypt.encrypt;
 
 public class RegisterScreenControl {
 
@@ -37,13 +32,12 @@ public class RegisterScreenControl {
     private PasswordField passwordField;
     @FXML
     private PasswordField passwordFieldRepeat;
-    private Boolean rdyToRegister;
 
-    private Paint red = Paint.valueOf(Integer.toHexString(Color.RED.hashCode()));
+    private final Paint red = Paint.valueOf(Integer.toHexString(Color.RED.hashCode()));
 
     @FXML
     private void tryToRegister(ActionEvent event) throws IOException {
-        rdyToRegister = true;
+        boolean rdyToRegister = true;
         if(checkName(firstnameField.getText())){
             firstnameField.setStyle("-fx-control-inner-background: #" +red.toString().substring(2));
             rdyToRegister = false;
@@ -80,13 +74,11 @@ public class RegisterScreenControl {
     }
 
     private boolean checkName(String name) {
-        if(name.length() > 2) return false;
-        return true;
+        return name.length() <= 2;
     }
 
     private boolean checkUsername(String username) {
-        if(username.length() <= 5 || username.length() >12) return false;
-        return true;
+        return username.length() > 5 && username.length() <= 12;
     }
 
     private boolean checkMail(String mail) {

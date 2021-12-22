@@ -1,10 +1,8 @@
 package com.financial.controller.gui;
 
-import com.financial.controller.UserController;
-import com.financial.controller.login.LoginController;
-import com.financial.object.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -24,6 +22,10 @@ public class MainPageControl implements Initializable {
     private Label expenseLabel;
     @FXML
     private Label biggestExpenseLabel;
+    @FXML
+    private PieChart expenseChart;
+    @FXML
+    private PieChart incomeChart;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

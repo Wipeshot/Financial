@@ -10,7 +10,7 @@ public class LoginController {
 
     public static boolean checkPassword(String username, String password) {
         String rightPassword = MySQLConnection.getPasswordByUsername(encrypt(username, String.valueOf(username.length())));
-        if(rightPassword.equals(encrypt(password, username + encrypt(username, String.valueOf(username.length()))))) return true;return false;
+        return rightPassword.equals(encrypt(password, username + encrypt(username, String.valueOf(username.length()))));
     }
 
     public static boolean setupNewUser(String username, String password, String name, String firstname, String email) {
