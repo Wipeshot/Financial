@@ -2,7 +2,6 @@ package com.financial.controller.gui;
 
 import com.financial.connection.MySQLConnection;
 import com.financial.controller.UserController;
-import com.financial.controller.login.Encrypt;
 import com.financial.controller.login.LoginController;
 import com.financial.controller.ScreenController;
 import com.financial.object.User;
@@ -38,7 +37,7 @@ public class LoginScreenControl {
         String passwordString = passwordField.getText();
         if(LoginController.checkPassword(usernameString, passwordString)) {
             User user = MySQLConnection.getUserData(encrypt(usernameString, String.valueOf(usernameString.length())));
-            UserController.setUser(LoginController.encryptUserdata(user, usernameString.length()));
+            UserController.setupUser(LoginController.encryptUserdata(user, usernameString.length()));
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
