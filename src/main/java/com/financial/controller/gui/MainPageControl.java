@@ -67,40 +67,49 @@ public class MainPageControl implements Initializable {
     }
 
     @FXML
-    private void reopenDashboard(ActionEvent event) throws IOException {
+    private void openAddIncome(ActionEvent event) throws IOException {
+        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("AddIncome.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void openDashboard(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }
     @FXML
-    private void openIncome(ActionEvent event) throws IOException {
+    private void reopenIncome(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("IncomeView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }
-    /*@FXML
+    @FXML
     private void openExpense(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("ExpenseView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }
     @FXML
     private void openAccounts(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("AccountView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }
     @FXML
     private void openOption(ActionEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("OptionView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
-    }*/
+    }
 
     private void setupIncomeChart() {
         ArrayList<IncomeAndExpenseCategory> incomeCategory = getIncomeToCategory();

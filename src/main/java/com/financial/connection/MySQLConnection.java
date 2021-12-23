@@ -149,22 +149,23 @@ public class MySQLConnection {
     }
 
     public static ArrayList<IncomeAndExpenseCategory> getCategory() {
-        String sql = "SELECT bezeichnung, einnahme FROM kategorie";
+        String sql = "SELECT kategorieid, bezeichnung, einnahme FROM kategorie";
         try {
             Connection con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             ArrayList<IncomeAndExpenseCategory> category = new ArrayList<>();
             while(rs.next()) {
-                String name = rs.getString(1);
-                int einnahmeValue = rs.getInt(2);
+                int categoryId = rs.getInt(1);
+                String name = rs.getString(2);
+                int einnahmeValue = rs.getInt(3);
                 if(einnahmeValue == 2) {
-                    category.add(new IncomeAndExpenseCategory(name, true));
-                    category.add(new IncomeAndExpenseCategory(name, false));
+                    category.add(new IncomeAndExpenseCategory(categoryId, name, true));
+                    category.add(new IncomeAndExpenseCategory(categoryId, name, false));
                 } else if ( einnahmeValue == 1) {
-                    category.add(new IncomeAndExpenseCategory(name, true));
+                    category.add(new IncomeAndExpenseCategory(categoryId, name, true));
                 }else if (einnahmeValue == 0) {
-                    category.add(new IncomeAndExpenseCategory(name, false));
+                    category.add(new IncomeAndExpenseCategory(categoryId, name, false));
                 }
             }
             return category;

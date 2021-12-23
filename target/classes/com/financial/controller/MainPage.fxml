@@ -17,14 +17,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="900.0">
                <children>
-                  <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#reopenDashboard" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
-                  <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#openIncome" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
-                  <Button fx:id="expenseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
-                  <Button fx:id="accountsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
-                  <Button fx:id="optionButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einstellungen" />
+                  <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#openDashboard" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
+                  <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#reopenIncome" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
+                  <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#openExpense" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
+                  <Button fx:id="accountsButton" mnemonicParsing="false" onAction="#openAccounts" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
+                  <Button fx:id="optionButton" mnemonicParsing="false" onAction="#openOption" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einstellungen" />
                </children>
             </HBox>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <GridPane layoutX="14.0" layoutY="65.0" prefHeight="218.0" prefWidth="362.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="134.0" />

@@ -4,7 +4,6 @@ import com.financial.connection.MySQLConnection;
 import com.financial.object.*;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class UserController {
 
@@ -77,7 +76,7 @@ public class UserController {
         }
 
         public static IncomeAndExpenseCategory getCategoryWithBiggestIncome() {
-                IncomeAndExpenseCategory biggestIncomeCategory = new IncomeAndExpenseCategory("Kein Einkommen", true);
+                IncomeAndExpenseCategory biggestIncomeCategory = new IncomeAndExpenseCategory(-1, "Kein Einkommen", true);
                 for (IncomeAndExpenseCategory cat : category) {
                         if (cat.getAmount() > biggestIncomeCategory.getAmount() && cat.isIncome()) biggestIncomeCategory = cat;
                 }
@@ -85,7 +84,7 @@ public class UserController {
         }
 
         public static IncomeAndExpenseCategory getCategoryWithBiggestExpense() {
-                IncomeAndExpenseCategory biggestExpenseCategory = new IncomeAndExpenseCategory("Keine Ausgaben", false);
+                IncomeAndExpenseCategory biggestExpenseCategory = new IncomeAndExpenseCategory(-1, "Keine Ausgaben", false);
                 for (IncomeAndExpenseCategory cat : category) {
                         if (cat.getAmount() > biggestExpenseCategory.getAmount() && !cat.isIncome()) biggestExpenseCategory = cat;
                 }
@@ -100,7 +99,7 @@ public class UserController {
                 try {
                         incomeCategory.get(0);
                 } catch (Exception e) {
-                        incomeCategory.add(new IncomeAndExpenseCategory("Keine Einnahmen", true));
+                        incomeCategory.add(new IncomeAndExpenseCategory(-1, "Keine Einnahmen", true));
                         incomeCategory.get(0).setAmount(100);
                 }
                 return incomeCategory;
@@ -114,7 +113,7 @@ public class UserController {
                 try {
                         expenseCategory.get(0);
                 } catch (Exception e) {
-                        expenseCategory.add(new IncomeAndExpenseCategory("Keine Ausgaben", false));
+                        expenseCategory.add(new IncomeAndExpenseCategory(-1, "Keine Ausgaben", false));
                         expenseCategory.get(0).setAmount(100);
                 }
                 return expenseCategory;
@@ -145,5 +144,19 @@ public class UserController {
 
         public static ArrayList<Expense> getExpense() {
                 return expense;
+        }
+
+        public static BankAccount getBankAccountForName(String accountName) {
+                for(BankAccount acc : bankAccounts) {
+                        if(acc.getAccountName() == accountName) return acc;
+                }
+                return null;
+        }
+
+        public static IncomeAndExpenseCategory getCategoryForName(String category, boolean isIncome) {
+                for(IncomeAndExpenseCategory cat : UserController.category) {
+                        if(cat.getCategoryName() == category && isIncome == cat.isIncome()) return cat;
+                }
+                return null;
         }
 }

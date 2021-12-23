@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.financial.controller.gui.ExpenseViewControlController"
+            prefHeight="551.0" prefWidth="897.0">
+    <AnchorPane layoutY="499.0" prefHeight="52.0" prefWidth="900.0">
+        <children>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="900.0">
+                <children>
+                    <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#openDashboard" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Dashboard" />
+                    <Button fx:id="incomeButton" mnemonicParsing="false" onAction="#reopenIncome" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einnahmenübersicht" />
+                    <Button fx:id="expenseButton" mnemonicParsing="false" onAction="#openExpense" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Ausgabenübersicht" />
+                    <Button fx:id="accountsButton" mnemonicParsing="false" onAction="#openAccounts" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Kontenübersicht" />
+                    <Button fx:id="optionButton" mnemonicParsing="false" onAction="#openOption" prefHeight="50.0" prefWidth="180.0" styleClass="button" stylesheets="@gui/Styles/MainPageStyle.css" text="Einstellungen" />
+                </children>
+            </HBox>
+        </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="64.0" prefWidth="897.0">
+        <children>
+            <Label alignment="CENTER" prefHeight="64.0" prefWidth="900.0" text="Ausgabenübersicht" textAlignment="CENTER" textFill="#c99200">
+                <font>
+                    <Font name="Arial Bold" size="46.0" />
+                </font>
+            </Label>
+        </children>
+    </AnchorPane>
+    <AnchorPane layoutY="64.0" prefHeight="435.0" prefWidth="900.0">
+        <children>
+            <TableView fx:id="tableIncome" prefHeight="382.0" prefWidth="406.0">
+                <columns>
+                    <TableColumn fx:id="tableColmAccount" prefWidth="75.0" text="Konto" />
+                    <TableColumn fx:id="tableColmValue" prefWidth="75.0" text="Betrag" />
+                    <TableColumn fx:id="tableColmCat" prefWidth="75.0" text="Kategorie" />
+                    <TableColumn fx:id="tableColmDate" prefWidth="75.0" text="Datum" />
+                    <TableColumn fx:id="tableColmDesc" prefWidth="104.0" text="Beschreibung" />
+                </columns>
+            </TableView>
+            <VBox layoutX="530.0" prefHeight="435.0" prefWidth="370.0">
+                <children>
+                    <PieChart fx:id="expenseToAccountChart" prefHeight="439.0" prefWidth="370.0" />
+                </children>
+            </VBox>
+            <HBox layoutY="382.0" prefHeight="52.0" prefWidth="406.0">
+                <children>
+                    <Button fx:id="addExpenseButton" mnemonicParsing="false" onAction="#openAddExpense" prefHeight="85.0" prefWidth="203.0" text="Ausgabe hinzufügen" />
+                    <Button fx:id="deleteExpenseButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="203.0" text="Ausgabe entfernen" />
+                </children>
+            </HBox>
+        </children>
+    </AnchorPane>
+
+</AnchorPane>

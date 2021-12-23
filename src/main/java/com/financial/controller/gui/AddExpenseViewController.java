@@ -28,13 +28,12 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
-
-public class AddIncomeWindowController implements Initializable {
+public class AddExpenseViewController implements Initializable {
 
     @FXML
     private TextField descriptionField;
     @FXML
-    private DatePicker incomeDatePicker;
+    private DatePicker expenseDatePicker;
     @FXML
     private TextField valueField;
     @FXML
@@ -78,13 +77,13 @@ public class AddIncomeWindowController implements Initializable {
     TextFormatter<Double> textFormatter = new TextFormatter<>(converter, 0.0, filter);
 
     ArrayList<IncomeAndExpenseCategory> differentCategories;
-    ArrayList<String> incomeCategory;
+    ArrayList<String> expenseCategory;
     ArrayList<BankAccount> bankAccounts;
     ArrayList<String> bankAccountsString;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         differentCategories = UserController.getCategory();
-        incomeCategory = new ArrayList<>();
+        expenseCategory = new ArrayList<>();
         bankAccounts = UserController.getBankAccounts();
         bankAccountsString = new ArrayList<>();
 
@@ -95,35 +94,36 @@ public class AddIncomeWindowController implements Initializable {
     }
 
     @FXML
-    private void cancelButton(ActionEvent event) throws IOException {
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("IncomeView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        window.setScene(scene);
-    }
-
-    @FXML
-    private void addIncomeButtonPressed(ActionEvent event) throws IOException {
+    private void addExpenseButtonPressed(ActionEvent event) throws IOException {
         BankAccount bankAccount = UserController.getBankAccountForName((String) accountBox.getSelectionModel().getSelectedItem());
         if(bankAccount == null) return;
         IncomeAndExpenseCategory category = UserController.getCategoryForName((String) categoryBox.getSelectionModel().getSelectedItem(), true);
         if(category == null) return;
         double value = Double.parseDouble(valueField.getText());
         if(value <= 0) return;
-        LocalDate localDate = incomeDatePicker.getValue();
+        LocalDate localDate = expenseDatePicker.getValue();
         if(localDate.isAfter(localDate(getDateTime()))) return;
         String description = descriptionField.getText();
-        MySQLConnection.addIncome(bankAccount.getAccountId(), category.getCategoryId(), value, description);
+        MySQLConnection.addExpense(bankAccount.getAccountId(), category.getCategoryId(), value, description);
         cancelButton(event);
     }
 
+    @FXML
+    private void cancelButton(ActionEvent event) throws IOException {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("ExpenseView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        window.setScene(scene);
+    }
+
+
     private void initCategoryBox() {
         for(IncomeAndExpenseCategory cat : differentCategories) {
-            if(cat.isIncome()) {
-                incomeCategory.add(cat.getCategoryName());
+            if(!cat.isIncome()) {
+                expenseCategory.add(cat.getCategoryName());
             }
         }
-        ObservableList<String> category = FXCollections.observableList(incomeCategory);
+        ObservableList<String> category = FXCollections.observableList(expenseCategory);
         categoryBox.setItems(category);
     }
 
@@ -140,7 +140,7 @@ public class AddIncomeWindowController implements Initializable {
     }
 
     private void initIncomeDatePicker() {
-        incomeDatePicker.setValue(localDate(getDateTime()));
+        expenseDatePicker.setValue(localDate(getDateTime()));
     }
 
     private static final LocalDate localDate (String dateString){
@@ -152,6 +152,4 @@ public class AddIncomeWindowController implements Initializable {
     private String getDateTime() {
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     }
-
-
 }

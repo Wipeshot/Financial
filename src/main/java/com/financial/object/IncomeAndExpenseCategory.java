@@ -2,12 +2,14 @@ package com.financial.object;
 
 public class IncomeAndExpenseCategory {
 
+    private final int categoryId;
     private final String category;
     private final boolean income;
     private double amount;
     private boolean isUsed = false;
 
-    public IncomeAndExpenseCategory(String category, boolean income) {
+    public IncomeAndExpenseCategory(int categoryId, String category, boolean income) {
+        this.categoryId = categoryId;
         this.category = category;
         this.income = income;
     }
@@ -44,5 +46,9 @@ public class IncomeAndExpenseCategory {
 
     public boolean isUsed() {
         return isUsed;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
     }
 }

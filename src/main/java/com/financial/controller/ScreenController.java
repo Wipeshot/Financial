@@ -20,6 +20,7 @@ public class ScreenController extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }
