@@ -11,6 +11,7 @@ import java.io.IOException;
 public class ScreenController extends Application {
 
     public static void main(String[] args) {
+        System.out.println(Encrypt.encrypt("Girokonto", "Mustache"));
         launch();
     }
 

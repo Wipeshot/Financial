@@ -19,20 +19,7 @@ public class UserController {
 
         public static void setupUser(User user) {
                 UserController.user = user;
-                bankAccounts = MySQLConnection.getBankAccounts(user.getUserid());
-                if(bankAccounts != null) for (BankAccount acc : bankAccounts) {
-                        ArrayList<Income> incomes = MySQLConnection.getIncome(acc.getAccountId());
-                        ArrayList<Expense> expenses = MySQLConnection.getExpense(acc.getAccountId());
-                        if (incomes != null) for (Income in : incomes) {
-                                income.add(in);
-                        }
-                        if (expenses != null) for (Expense exp : expenses) {
-                                expense.add(exp);
-                        }
-                }
-                setupIncomeToCategory();
-                setupExpenseToCategory();
-                setupBankAccount();
+                reloadUser();
         }
 
         public static void setupIncomeToCategory() {
@@ -148,7 +135,15 @@ public class UserController {
 
         public static BankAccount getBankAccountForName(String accountName) {
                 for(BankAccount acc : bankAccounts) {
+                        System.out.println(acc.getAccountName());
                         if(acc.getAccountName() == accountName) return acc;
+                }
+                return null;
+        }
+
+        public static BankAccount getBankAccountForId(int id) {
+                for(BankAccount acc: bankAccounts) {
+                        if(acc.getAccountId() == id) return acc;
                 }
                 return null;
         }
@@ -158,5 +153,31 @@ public class UserController {
                         if(cat.getCategoryName() == category && isIncome == cat.isIncome()) return cat;
                 }
                 return null;
+        }
+
+        public static void reloadUser() {
+                category = MySQLConnection.getCategory();
+                bankAccounts = MySQLConnection.getBankAccounts(user.getUserid());
+                if(bankAccounts != null) for (BankAccount acc : bankAccounts) {
+                        ArrayList<Income> incomes = MySQLConnection.getIncome(acc.getAccountId());
+                        ArrayList<Expense> expenses = MySQLConnection.getExpense(acc.getAccountId());
+                        if (incomes != null) for (Income in : incomes) {
+                                income.add(in);
+                        }
+                        if (expenses != null) for (Expense exp : expenses) {
+                                expense.add(exp);
+                        }
+                }
+                setupIncomeToCategory();
+                setupExpenseToCategory();
+                setupBankAccount();
+        }
+
+        public static double calculateNetWorth() {
+                double networth = 0;
+                for(BankAccount acc : bankAccounts) {
+                        networth += acc.getBalance();
+                }
+                return networth;
         }
 }

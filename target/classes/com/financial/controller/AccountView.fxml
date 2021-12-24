@@ -33,14 +33,14 @@
                     <TableColumn fx:id="tableColmAccountBalance" prefWidth="113.0" text="Kontostand" />
                 </columns>
             </TableView>
-            <VBox layoutX="530.0" prefHeight="435.0" prefWidth="370.0">
+            <VBox layoutX="530.0" layoutY="45.0" prefHeight="390.0" prefWidth="370.0">
                 <children>
-                    <PieChart fx:id="bankAccountBalanceToAccount" prefHeight="439.0" prefWidth="370.0" />
+                    <PieChart fx:id="bankAccountBalanceToAccount" prefHeight="449.0" prefWidth="370.0" />
                 </children>
             </VBox>
             <HBox layoutY="382.0" prefHeight="52.0" prefWidth="340.0">
                 <children>
-                    <Button fx:id="deleteAccountButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="359.0" text="Konto entfernen" />
+                    <Button fx:id="deleteAccountButton" mnemonicParsing="false" onAction="#removeBankAccount" prefHeight="52.0" prefWidth="359.0" text="Konto entfernen" />
                 </children>
             </HBox>
          <VBox layoutX="340.0" prefHeight="435.0" prefWidth="186.0">
@@ -54,6 +54,11 @@
                     <Button fx:id="addAccountButton" mnemonicParsing="false" onAction="#openAddBankAccount" prefHeight="34.0" prefWidth="186.0" text="Konto hinzufügen" />
             </children>
          </VBox>
+         <Label fx:id="networthLabel" alignment="CENTER" layoutX="526.0" layoutY="-2.0" prefHeight="34.0" prefWidth="370.0" text="Vermögen: ">
+            <font>
+               <Font size="17.0" />
+            </font>
+         </Label>
         </children>
     </AnchorPane>
      <AnchorPane prefHeight="64.0" prefWidth="897.0">

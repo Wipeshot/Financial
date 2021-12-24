@@ -3,6 +3,8 @@ package com.financial.controller.gui;
 import com.financial.controller.ScreenController;
 import com.financial.controller.UserController;
 import com.financial.object.BankAccount;
+import com.financial.object.Income;
+import com.financial.object.RowObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,17 +14,20 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static com.financial.controller.UserController.getBankAccounts;
+import static com.financial.controller.UserController.getIncome;
 
 public class IncomeView implements Initializable {
 
@@ -58,19 +63,31 @@ public class IncomeView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserController.reloadUser();
         initTable();
         initPieChart();
+        tableColmAccount.setCellValueFactory(new PropertyValueFactory<>("str"));
+        tableColmValue.setCellValueFactory(new PropertyValueFactory<>("str2"));
+        tableColmCat.setCellValueFactory(new PropertyValueFactory<>("str3"));
+        tableColmDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tableColmDesc.setCellValueFactory(new PropertyValueFactory<>("str4"));
+        tableIncome.setItems(initTable());
     }
 
-    private void initTable() {
-
+    private ObservableList<RowObject> initTable() {
+        ObservableList<RowObject> rows = FXCollections.observableArrayList();
+        ArrayList<Income> income = getIncome();
+        for(Income in : income) {
+            rows.add(new RowObject(UserController.getBankAccountForId(in.getBankAccount()).getAccountDecryptedName(), in.getAmount() + "€", in.getCategory(), in.getDate(), in.getDescription()));
+        }
+        return rows;
     }
 
     private void initPieChart() {
         ArrayList<BankAccount> accounts = UserController.getBankAccounts();
         ArrayList<PieChart.Data> chartBalance = new ArrayList<>();
         for (BankAccount acc : accounts) {
-            chartBalance.add(new PieChart.Data(acc.getAccountName(), acc.getBalance()));
+            chartBalance.add(new PieChart.Data(acc.getAccountDecryptedName(), acc.getBalance()));
         }
         if (chartBalance.size() > 0) {
             ObservableList<PieChart.Data> chart = FXCollections.observableList(chartBalance);

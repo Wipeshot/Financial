@@ -83,6 +83,7 @@ public class AddIncomeWindowController implements Initializable {
     ArrayList<String> bankAccountsString;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserController.reloadUser();
         differentCategories = UserController.getCategory();
         incomeCategory = new ArrayList<>();
         bankAccounts = UserController.getBankAccounts();
@@ -104,12 +105,17 @@ public class AddIncomeWindowController implements Initializable {
 
     @FXML
     private void addIncomeButtonPressed(ActionEvent event) throws IOException {
+        System.out.println("Pressed");
         BankAccount bankAccount = UserController.getBankAccountForName((String) accountBox.getSelectionModel().getSelectedItem());
+        System.out.println(accountBox.getSelectionModel().getSelectedItem());
         if(bankAccount == null) return;
+        System.out.println("Solved Bankaccount");
         IncomeAndExpenseCategory category = UserController.getCategoryForName((String) categoryBox.getSelectionModel().getSelectedItem(), true);
         if(category == null) return;
+        System.out.println("Solved category");
         double value = Double.parseDouble(valueField.getText());
         if(value <= 0) return;
+        System.out.println(incomeDatePicker.getValue());
         LocalDate localDate = incomeDatePicker.getValue();
         if(localDate.isAfter(localDate(getDateTime()))) return;
         String description = descriptionField.getText();
@@ -129,7 +135,7 @@ public class AddIncomeWindowController implements Initializable {
 
     private void initAccountBox() {
         for (BankAccount acc : bankAccounts) {
-            bankAccountsString.add(acc.getAccountName());
+            bankAccountsString.add(acc.getAccountDecryptedName());
         }
         ObservableList<String> bankAccount = FXCollections.observableList(bankAccountsString);
         accountBox.setItems(bankAccount);

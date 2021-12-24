@@ -1,16 +1,20 @@
 package com.financial.controller.gui;
 
 import com.financial.controller.ScreenController;
+import com.financial.controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ExpenseViewControlController {
+public class ExpenseViewControlController implements Initializable {
 
     @FXML
     private void openAddIncome(ActionEvent event) throws IOException {
@@ -62,5 +66,10 @@ public class ExpenseViewControlController {
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("AddExpenseView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserController.reloadUser();
     }
 }

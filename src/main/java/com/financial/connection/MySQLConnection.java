@@ -3,6 +3,7 @@ package com.financial.connection;
 import com.financial.object.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MySQLConnection {
@@ -78,13 +79,13 @@ public class MySQLConnection {
             String category;
             double amount;
             String description;
-            Date date;
+            LocalDate date;
             ArrayList<Income> income = new ArrayList<>();
             while(rs.next()) {
                 category = rs.getString(1);
                 amount = rs.getDouble(2);
                 description = rs.getString(3);
-                date = rs.getDate(4);
+                date = rs.getDate(4).toLocalDate();
                 income.add(new Income(category, amount, description, kontoid, date));
             }
             return income;
@@ -176,15 +177,27 @@ public class MySQLConnection {
         }
     }
 
-    public static void addBankAccount(String name, int ownerid) {
+    public static void addBankAccount(String name, int ownerId) {
         String sql = "INSERT INTO konto (kontoid, kontoname, inhaberid) " +
-                "VALUES (null, '" + name + "', " + ownerid + ")";
+                "VALUES (null, '" + name + "', " + ownerId + ")";
         try {
             Connection con = DriverManager.getConnection(url, user,password);
             Statement stmt = con.createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException throwable) {
             System.out.println("addBankAccount()");
+            throwable.printStackTrace();
+        }
+    }
+
+    public static void removeBankAccount(int accountId) {
+        String sql = "DELETE FROM konto WHERE kontoid = " + accountId;
+        try {
+            Connection con = DriverManager.getConnection(url, user,password);
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (SQLException throwable) {
+            System.out.println("removeBankAccount()");
             throwable.printStackTrace();
         }
     }

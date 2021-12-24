@@ -129,7 +129,7 @@ public class AddExpenseViewController implements Initializable {
 
     private void initAccountBox() {
         for (BankAccount acc : bankAccounts) {
-            bankAccountsString.add(acc.getAccountName());
+            bankAccountsString.add(acc.getAccountDecryptedName());
         }
         ObservableList<String> bankAccount = FXCollections.observableList(bankAccountsString);
         accountBox.setItems(bankAccount);

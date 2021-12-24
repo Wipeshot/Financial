@@ -2,6 +2,7 @@ module com.example.financial {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.base;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -17,4 +18,6 @@ module com.example.financial {
     opens com.financial.controller.gui to javafx.fxml;
     exports com.financial.controller.login;
     opens com.financial.controller.login to javafx.fxml;
+    exports com.financial.object;
+    opens com.financial.object to javafx.base;
 }

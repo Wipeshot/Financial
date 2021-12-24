@@ -1,6 +1,7 @@
 package com.financial.object;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Income {
 
@@ -8,9 +9,9 @@ public class Income {
     private final double amount;
     private final String description;
     private final int bankAccount;
-    private final Date date;
+    private final LocalDate date;
 
-    public Income(String category, double amount, String description, int bankAccount, Date date) {
+    public Income(String category, double amount, String description, int bankAccount, LocalDate date) {
         this.category = category;
         this.amount = amount;
         this.description = description;
@@ -22,7 +23,7 @@ public class Income {
         return category;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

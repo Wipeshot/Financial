@@ -57,6 +57,7 @@ public class MainPageControl implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserController.reloadUser();
         firstandlastnameLabel.setText(getUser().getFullName());
         incomeLabel.setText(calculateOverallIncome() + "€");
         biggestIncomeLabel.setText(getCategoryWithBiggestIncome().getCategoryName());
@@ -77,6 +78,7 @@ public class MainPageControl implements Initializable {
 
     @FXML
     private void openDashboard(ActionEvent event) throws IOException {
+        UserController.reloadUser();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("MainPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -84,6 +86,7 @@ public class MainPageControl implements Initializable {
     }
     @FXML
     private void reopenIncome(ActionEvent event) throws IOException {
+        UserController.reloadUser();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("IncomeView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -91,6 +94,7 @@ public class MainPageControl implements Initializable {
     }
     @FXML
     private void openExpense(ActionEvent event) throws IOException {
+        UserController.reloadUser();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("ExpenseView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -98,6 +102,7 @@ public class MainPageControl implements Initializable {
     }
     @FXML
     private void openAccounts(ActionEvent event) throws IOException {
+        UserController.reloadUser();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("AccountView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -105,6 +110,7 @@ public class MainPageControl implements Initializable {
     }
     @FXML
     private void openOption(ActionEvent event) throws IOException {
+        UserController.reloadUser();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenController.class.getResource("OptionView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -112,6 +118,7 @@ public class MainPageControl implements Initializable {
     }
 
     private void setupIncomeChart() {
+        UserController.reloadUser();
         ArrayList<IncomeAndExpenseCategory> incomeCategory = getIncomeToCategory();
         ArrayList<PieChart.Data> incomeCatList = new ArrayList<>();
         for (IncomeAndExpenseCategory cat : incomeCategory) {
@@ -125,6 +132,7 @@ public class MainPageControl implements Initializable {
     }
 
     private void setupExpenseChart() {
+        UserController.reloadUser();
         ArrayList<IncomeAndExpenseCategory> expenseCategory = getExpenseToCategory();
         ArrayList<PieChart.Data> expenseCatList = new ArrayList<>();
         for (IncomeAndExpenseCategory cat : expenseCategory) {
