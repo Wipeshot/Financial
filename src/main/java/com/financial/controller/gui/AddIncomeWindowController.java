@@ -1,6 +1,6 @@
 package com.financial.controller.gui;
 
-import com.financial.connection.MySQLConnection;
+import com.financial.connection.SQLConnection;
 import com.financial.controller.ScreenController;
 import com.financial.controller.UserController;
 import com.financial.object.BankAccount;
@@ -119,7 +119,7 @@ public class AddIncomeWindowController implements Initializable {
         LocalDate localDate = incomeDatePicker.getValue();
         if(localDate.isAfter(localDate(getDateTime()))) return;
         String description = descriptionField.getText();
-        MySQLConnection.addIncome(bankAccount.getAccountId(), category.getCategoryId(), value, description);
+        SQLConnection.addIncome(bankAccount.getAccountId(), category.getCategoryId(), value, description);
         cancelButton(event);
     }
 

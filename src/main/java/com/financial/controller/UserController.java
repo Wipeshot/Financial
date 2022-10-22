@@ -1,6 +1,6 @@
 package com.financial.controller;
 
-import com.financial.connection.MySQLConnection;
+import com.financial.connection.SQLConnection;
 import com.financial.object.*;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class UserController {
 
         private static User user;
-        private static ArrayList<IncomeAndExpenseCategory> category = MySQLConnection.getCategory();
+        private static ArrayList<IncomeAndExpenseCategory> category = SQLConnection.getCategory();
         private static ArrayList<BankAccount> bankAccounts;
         private static ArrayList<Income> income = new ArrayList<>();
         private static ArrayList<Expense> expense = new ArrayList<>();
@@ -156,11 +156,11 @@ public class UserController {
         }
 
         public static void reloadUser() {
-                category = MySQLConnection.getCategory();
-                bankAccounts = MySQLConnection.getBankAccounts(user.getUserid());
+                category = SQLConnection.getCategory();
+                bankAccounts = SQLConnection.getBankAccounts(user.getUserid());
                 if(bankAccounts != null) for (BankAccount acc : bankAccounts) {
-                        ArrayList<Income> incomes = MySQLConnection.getIncome(acc.getAccountId());
-                        ArrayList<Expense> expenses = MySQLConnection.getExpense(acc.getAccountId());
+                        ArrayList<Income> incomes = SQLConnection.getIncome(acc.getAccountId());
+                        ArrayList<Expense> expenses = SQLConnection.getExpense(acc.getAccountId());
                         if (incomes != null) for (Income in : incomes) {
                                 income.add(in);
                         }

@@ -1,6 +1,6 @@
 package com.financial.controller.gui;
 
-import com.financial.connection.MySQLConnection;
+import com.financial.connection.SQLConnection;
 import com.financial.controller.ScreenController;
 import com.financial.controller.UserController;
 import com.financial.object.BankAccount;
@@ -72,7 +72,7 @@ public class AccountViewController implements Initializable {
         String accountName = addAccountField.getText();
         if(accountName != "" && accountName.length() <= 10) {
             BankAccount newAccount = new BankAccount(-1, addAccountField.getText(), UserController.getUser().getUserid());
-            MySQLConnection.addBankAccount(newAccount.getEncryptAccountName(), newAccount.getOwnerId());
+            SQLConnection.addBankAccount(newAccount.getEncryptAccountName(), newAccount.getOwnerId());
         }
         openAccounts(event);
     }
@@ -81,7 +81,7 @@ public class AccountViewController implements Initializable {
         RowObject selectedItem = tableAccounts.getSelectionModel().getSelectedItem();
         if(selectedItem != null) {
             tableAccounts.getItems().remove(selectedItem);
-            MySQLConnection.removeBankAccount(UserController.getBankAccountForName(selectedItem.getStr()).getAccountId());
+            SQLConnection.removeBankAccount(UserController.getBankAccountForName(selectedItem.getStr()).getAccountId());
         }
         openAccounts(event);
     }

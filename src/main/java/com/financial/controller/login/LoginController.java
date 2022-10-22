@@ -1,6 +1,6 @@
 package com.financial.controller.login;
 
-import com.financial.connection.MySQLConnection;
+import com.financial.connection.SQLConnection;
 import com.financial.object.User;
 
 import static com.financial.controller.login.Encrypt.decrypt;
@@ -9,18 +9,18 @@ import static com.financial.controller.login.Encrypt.encrypt;
 public class LoginController {
 
     public static boolean checkPassword(String username, String password) {
-        String rightPassword = MySQLConnection.getPasswordByUsername(encrypt(username, String.valueOf(username.length())));
+        String rightPassword = SQLConnection.getPasswordByUsername(encrypt(username, String.valueOf(username.length())));
         return rightPassword.equals(encrypt(password, username + encrypt(username, String.valueOf(username.length()))));
     }
 
     public static boolean setupNewUser(String username, String password, String name, String firstname, String email) {
-        if(username.length() > 7 && password.length() > 5 && name.length() < 1 && firstname.length() < 1 && email.length() < 5) {
+        if(username.length() >= 4 && password.length() > 5 && name.length() > 1 && firstname.length() > 1 && email.length() > 5) {
             String encryptedUsername = encrypt(username, String.valueOf(username.length()));
             String encryptedPassword = encrypt(password, username + encryptedUsername);
             String encryptedName = encrypt(name, encryptedUsername);
             String encryptedFirstname = encrypt(firstname, encryptedName);
             String encryptedEmail = encrypt(email, encryptedFirstname);
-            MySQLConnection.createNewUser(encryptedUsername, encryptedPassword, encryptedName, encryptedFirstname, encryptedEmail);
+            SQLConnection.createNewUser(encryptedUsername, encryptedPassword, encryptedName, encryptedFirstname, encryptedEmail);
             return true;
         } else {
             return false;
